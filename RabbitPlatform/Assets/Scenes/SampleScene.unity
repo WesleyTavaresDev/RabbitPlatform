@@ -324,8 +324,9 @@ GameObject:
   - component: {fileID: 1513728745}
   - component: {fileID: 1513728748}
   - component: {fileID: 1513728747}
+  - component: {fileID: 1513728749}
   m_Layer: 0
-  m_Name: RabbitPlayer
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,7 +371,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 563786890463136095, guid: 83169479943987342a8ded1203ea6fe5, type: 3}
+  m_Sprite: {fileID: -6367560908665664636, guid: 606113f76c0ae0d41aa2c4b5dab3cdc9,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -432,3 +434,16 @@ CapsuleCollider2D:
   m_Offset: {x: -0.000000059604645, y: 0.62456214}
   m_Size: {x: 0.6179944, y: 1.1857483}
   m_Direction: 0
+--- !u!114 &1513728749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513728744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361a78927ed06a3429d49eca7337345d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalSpeed: 120
