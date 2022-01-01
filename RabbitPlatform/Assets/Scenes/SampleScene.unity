@@ -447,7 +447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361a78927ed06a3429d49eca7337345d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 120
+  maxHorizontalSpeed: 120
+  horizontalSpeed: 0
+  timeMinimumToMaximumSpeed: 0.5
 --- !u!95 &1513728750
 Animator:
   serializedVersion: 3

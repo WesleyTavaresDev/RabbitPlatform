@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private float maxHorizontalSpeed;
     [SerializeField] private float horizontalSpeed;
+    [SerializeField] private float timeMinimumToMaximumSpeed;
+    private float refSpeed;
 
     private bool isFacingLeft;
 
@@ -24,13 +28,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-
-        rb.velocity = new Vector2(horizontalInput * Time.fixedDeltaTime * horizontalSpeed, rb.velocity.y);
+        horizontalSpeed = GetHorizontalInput() != 0 ? ChangeSpeed(maxHorizontalSpeed) : ChangeSpeed(0);
+        rb.velocity = new Vector2(GetHorizontalInput() * Time.fixedDeltaTime * horizontalSpeed, rb.velocity.y);
         anim.SetInteger("Moving", (int)rb.velocity.x);
         
         HandleFlip();
     }
+
+    float ChangeSpeed(float targetSpeed) => Mathf.SmoothDamp(horizontalSpeed, targetSpeed, ref refSpeed, timeMinimumToMaximumSpeed);
 
     void Flip()
     {     
