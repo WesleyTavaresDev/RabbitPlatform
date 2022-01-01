@@ -9,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingLeft;
 
     Rigidbody2D rb;
-    
+    Animator anim;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -25,34 +27,37 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(horizontalInput * Time.fixedDeltaTime * horizontalSpeed, rb.velocity.y);
-    
-        Flip(horizontalInput);
+        anim.SetInteger("Moving", (int)rb.velocity.x);
+        
+        HandleFlip();
     }
 
-    void Flip(float horizontalInput)
-    {
-        if(horizontalInput == 0)
-        {
-            return;
-        }
-        
+    void Flip()
+    {     
         isFacingLeft = !isFacingLeft;
 
         Vector2 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    void HandleFlip()
+    {
+        if(GetHorizontalInput() == 0)
+            return;
         
-    
-        if(horizontalInput > 0)
+        else if(GetHorizontalInput() > 0)
         {
             if(isFacingLeft)
-                Flip(horizontalInput);
+                Flip();
         }
-
+        
         else
         {
             if(!isFacingLeft)
-                Flip(horizontalInput);
+                Flip();
         }
     }
+  
+    float GetHorizontalInput() => Input.GetAxis("Horizontal");
 }
