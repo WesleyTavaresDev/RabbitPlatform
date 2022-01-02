@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 1000842046}
   - component: {fileID: 1000842045}
   - component: {fileID: 1000842044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,3 +484,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpStates: 0
   jumpForce: 350
+  checkDistance: 0

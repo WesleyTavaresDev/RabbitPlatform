@@ -9,6 +9,9 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] JUMP_STATES jumpStates;
     [SerializeField] private float jumpForce;
 
+    [SerializeField] private float checkDistance;
+    [SerializeField] private const int GROUND_LAYER = 8;
+
     Rigidbody2D rb;
 
     void Awake()
@@ -19,6 +22,7 @@ public class PlayerJump : MonoBehaviour
     void FixedUpdate()
     {
         Jump();
+        GroundCheck();
     }
 
     void Jump()
@@ -26,7 +30,13 @@ public class PlayerJump : MonoBehaviour
         if(Input.GetButtonDown("Jump") &&  jumpStates == JUMP_STATES.Idle)
         {
             rb.velocity = new Vector2(rb.velocity.x, Time.fixedDeltaTime * jumpForce);
-            jumpStates = JUMP_STATES.Jumping;
         }
+    }
+
+    void GroundCheck()
+    {
+        RaycastHit2D ray = Physics2D.Raycast(rb.worldCenterOfMass, Vector2.down, checkDistance, 1 << GROUND_LAYER);
+        Debug.DrawRay(rb.worldCenterOfMass, Vector2.down * checkDistance, Color.blue);
+        jumpStates = ray.collider != null ? JUMP_STATES.Idle : JUMP_STATES.Jumping;
     }
 }
