@@ -34,6 +34,7 @@ public class PlayerJump : MonoBehaviour
         DoubleJump();
         DoubleJumpAnimation();
 
+        StopJump();
         GroundCheck();
     }
     
@@ -59,6 +60,15 @@ public class PlayerJump : MonoBehaviour
     }
 
     void DoubleJumpAnimation() => anim.SetBool("DoubleJumping", doubleJumping);
+
+    void StopJump()
+    {
+        if( rb.velocity.y > 0 && Input.GetButtonUp("Jump"))
+        {
+            const float LIMITER = 0.25f;
+            Impulse(rb.velocity.y * LIMITER * Time.deltaTime);
+        }
+    }
     
     void GroundCheck()
     {
