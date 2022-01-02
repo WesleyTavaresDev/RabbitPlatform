@@ -5,12 +5,17 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class PlayerJump : MonoBehaviour
 {
-    enum JUMP_STATES { Idle, Jumping };
+    enum JUMP_STATES { Idle, Jumping};
     [SerializeField] JUMP_STATES jumpStates;
-    [SerializeField] private float jumpForce;
 
+    [Header("Jump", order = 1)]
+    [SerializeField] private float jumpForce;
+    [Header("DoubleJump", order = 2)][SerializeField] private float doubleJumpForce;
+    private bool doubleJumping;
+
+    [Header("GroundCheck", order = 3)]
     [SerializeField] private float checkDistance;
-    [SerializeField] private const int GROUND_LAYER = 8;
+    private const int GROUND_LAYER = 8;
 
     Rigidbody2D rb;
     Animator anim;
@@ -26,15 +31,16 @@ public class PlayerJump : MonoBehaviour
         Jump();
         JumpAnimation();
 
+        DoubleJump();
+        DoubleJumpAnimation();
+
         GroundCheck();
     }
-
+    
     void Jump()
     {
         if(Input.GetButtonDown("Jump") &&  !IsJumping())
-        {
-            rb.velocity = new Vector2(rb.velocity.x, Time.fixedDeltaTime * jumpForce);
-        }
+            Impulse(jumpForce); 
     }
 
     void JumpAnimation()
@@ -43,13 +49,31 @@ public class PlayerJump : MonoBehaviour
         anim.SetFloat("Jump", rb.velocity.y);
     }
 
+    void DoubleJump()
+    {
+        if(Input.GetButtonDown("Jump") && IsJumping() && !doubleJumping)
+        {
+            Impulse(doubleJumpForce);
+            doubleJumping = true;
+        }
+    }
+
+    void DoubleJumpAnimation() => anim.SetBool("DoubleJumping", doubleJumping);
+    
     void GroundCheck()
     {
         RaycastHit2D ray = Physics2D.Raycast(rb.worldCenterOfMass, Vector2.down, checkDistance, 1 << GROUND_LAYER);
         Debug.DrawRay(rb.worldCenterOfMass, Vector2.down * checkDistance, Color.blue);
 
-        jumpStates = ray.collider != null ? JUMP_STATES.Idle : JUMP_STATES.Jumping;
+        if(ray.collider != null)
+        {
+            jumpStates = JUMP_STATES.Idle;
+            doubleJumping = false;
+        }
+        else
+            jumpStates = JUMP_STATES.Jumping;
     }
 
     bool IsJumping() => jumpStates == JUMP_STATES.Jumping;
+    void Impulse(float force) => rb.velocity = new Vector2(rb.velocity.x, Time.fixedDeltaTime * force);
 }

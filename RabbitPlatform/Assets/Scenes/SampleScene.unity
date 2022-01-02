@@ -450,7 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHorizontalSpeed: 120
   horizontalSpeed: 0
-  timeMinimumToMaximumSpeed: 0.5
+  timeMinimumToMaximumSpeed: 0.3
 --- !u!95 &1513728750
 Animator:
   serializedVersion: 3
@@ -484,4 +484,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpStates: 0
   jumpForce: 350
+  doubleJumpForce: 300
   checkDistance: 0.7
