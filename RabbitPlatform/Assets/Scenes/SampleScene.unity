@@ -484,4 +484,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpStates: 0
   jumpForce: 350
-  checkDistance: 0
+  checkDistance: 0.7
