@@ -1,9 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class CollectableItem : MonoBehaviour, ICollectable
 {
+    Animator anim;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,6 +20,8 @@ public class CollectableItem : MonoBehaviour, ICollectable
 
     public void Collected()
     {
-        Destroy(this.gameObject, 0.5f);
+        anim.SetTrigger("Collected");
     }
+
+    void DestroyAfterCollected() => Destroy(this.gameObject);
 }
