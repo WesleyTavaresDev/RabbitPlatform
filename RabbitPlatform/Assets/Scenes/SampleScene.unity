@@ -256,8 +256,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47704659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.672, y: 3.944, z: 0}
-  m_LocalScale: {x: 1.4613674, y: 1.5107542, z: 1.1888}
+  m_LocalPosition: {x: -6.6833, y: 3.944, z: 0}
+  m_LocalScale: {x: 1.5104876, y: 1.4271322, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bbabe3337715a4985bc183795e02e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPoints: 1
 --- !u!61 &211242879
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1667,6 +1668,7 @@ GameObject:
   - component: {fileID: 480604795}
   - component: {fileID: 480604794}
   - component: {fileID: 480604793}
+  - component: {fileID: 480604797}
   m_Layer: 5
   m_Name: Points
   m_TagString: Untagged
@@ -1754,6 +1756,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &480604797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480604792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10ea1d382eaa044699dd65d48d987cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointText: {fileID: 1802973525}
 --- !u!1 &510318621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,6 +1893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bbabe3337715a4985bc183795e02e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPoints: 1
 --- !u!95 &510318626
 Animator:
   serializedVersion: 3
@@ -2151,6 +2167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bbabe3337715a4985bc183795e02e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPoints: 1
 --- !u!61 &1375623434
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4241,6 +4258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bbabe3337715a4985bc183795e02e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPoints: 1
 --- !u!61 &1900864556
 BoxCollider2D:
   m_ObjectHideFlags: 0
