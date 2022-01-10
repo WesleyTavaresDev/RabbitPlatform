@@ -26,7 +26,7 @@ public class PlayerJump : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Jump();
         JumpAnimation();
