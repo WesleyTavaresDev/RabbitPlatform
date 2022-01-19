@@ -5,9 +5,18 @@ using DG.Tweening;
 
 public class PlayerLife : MonoBehaviour
 {
+    public delegate void OnPlayerDeath();
+    public static event OnPlayerDeath playerDeath;
+
     Rigidbody2D rb;
     Animator anim;
     Collider2D collider;
+
+    void OnEnable()
+    {
+        playerDeath += OnDie;
+    }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,12 +27,14 @@ public class PlayerLife : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Spikes"))
-        {
-            anim.SetBool("Hit", true);
-            DisableCollider();
-        }
+            playerDeath?.Invoke();
+    }
+
+    void OnDie()
+    {
+        anim.SetBool("Hit", true);
+        DisableCollider();
     }
 
     void DisableCollider() => collider.enabled = false;
-
 }
