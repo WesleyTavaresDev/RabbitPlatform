@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class CollectableItem : MonoBehaviour, ICollectable
 {
-    [SerializeField] private int itemPoints;
-
     public delegate void OnCollect(int point);
     public static event OnCollect onCollected;
+    
+    [SerializeField] private int itemPoints;
 
     Animator anim;
 
@@ -22,15 +22,8 @@ public class CollectableItem : MonoBehaviour, ICollectable
             Collected();
         }
     }
-
     public void Collected() => anim.SetTrigger("Collected");
     
     void DestroyAfterCollected() => Destroy(this.gameObject); 
-
-    /**
-    *! f/void OnEnable() => onCollected += Collected;
-    *!void OnDisable() => onCollected -= Collected;
-    */
-
 }
     
