@@ -9,6 +9,7 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private CanvasGroup gameOverComponents;
     [SerializeField] private Canvas gameOverCanvas;
     [SerializeField] private GraphicRaycaster gameOverRaycaster;
+
     void OnEnable() => PlayerLife.playerDeath += ActiveGameOver;
 
     void ActiveGameOver()
@@ -22,7 +23,7 @@ public class GameOverManager : MonoBehaviour
 
     IEnumerator GameOverAnimation() 
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         DOTweenModuleUI.DOFade(this.gameOverComponents, 1f, 1f);
     }
 
