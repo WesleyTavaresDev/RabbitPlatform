@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameOverManager : MonoBehaviour
 {
@@ -15,7 +16,15 @@ public class GameOverManager : MonoBehaviour
         gameOverCanvas.enabled = true;
         gameOverRaycaster.enabled = true;
         gameOverComponents.enabled = true;
-    } 
+
+        StartCoroutine(GameOverAnimation());
+    }
+
+    IEnumerator GameOverAnimation() 
+    {
+        yield return new WaitForSeconds(1f);
+        DOTweenModuleUI.DOFade(this.gameOverComponents, 1f, 1f);
+    }
 
     void OnDisable() => PlayerLife.playerDeath -= ActiveGameOver;
 }
