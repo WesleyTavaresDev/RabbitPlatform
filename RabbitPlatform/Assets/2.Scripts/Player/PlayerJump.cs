@@ -79,11 +79,13 @@ public class PlayerJump : MonoBehaviour
         {
             jumpStates = JUMP_STATES.Idle;
             doubleJumping = false;
+            anim.SetBool("DoubleJumping", false);
         }
         else
             jumpStates = JUMP_STATES.Jumping;
     }
 
     bool IsJumping() => jumpStates == JUMP_STATES.Jumping;
+
     void Impulse(float force) => rb.velocity = new Vector2(rb.velocity.x, Time.fixedDeltaTime * force);
 }
